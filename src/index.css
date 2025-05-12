@@ -1,0 +1,424 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+/* @layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+ 
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+ 
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+} */
+
+/* Global Resets and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0D0B1A; /* Dark background */
+  color: #E0E0E0; /* Light text color */
+  display: flex;
+  min-height: 100vh;
+}
+
+#root {
+  display: flex;
+  width: 100%;
+}
+
+/* App Layout */
+.app-container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, rgba(46, 25, 90, 0.5), transparent 50%),
+              radial-gradient(circle at top right, rgba(25, 46, 90, 0.4), transparent 60%),
+              #0D0B1A; /* Dark base with subtle radial gradients */
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 70px;
+  background-color: rgba(18, 15, 35, 0.7); /* Slightly different from main bg, with some transparency */
+  backdrop-filter: blur(5px);
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-icon {
+  font-size: 24px;
+  color: #A0A0B0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.sidebar-icon:hover, .sidebar-icon.active {
+  color: #FFFFFF;
+  background-color: rgba(255, 0, 127, 0.2); /* Pinkish glow */
+}
+
+.sidebar-icon.plus {
+  background-color: #FF007F; /* Magenta */
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+.sidebar-icon.plus:hover {
+  background-color: #e00070;
+}
+
+
+/* Main Content Styles */
+.main-content {
+  flex-grow: 1;
+  padding: 30px 50px;
+  overflow-y: auto; /* In case content overflows */
+}
+
+/* Header Styles */
+.header {
+  margin-bottom: 40px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.header-logo-icon {
+  /* You'd use an SVG or a more complex icon here */
+  width: 24px;
+  height: 24px;
+  /* Simple pulse placeholder */
+  border-left: 2px solid #FF007F;
+  border-right: 2px solid #FF007F;
+  position: relative;
+}
+.header-logo-icon::before, .header-logo-icon::after {
+  content: '';
+  position: absolute;
+  background-color: #FF007F;
+  height: 2px;
+  width: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.header-logo-icon::before { left: 4px; }
+.header-logo-icon::after { right: 4px; }
+
+
+.header-logo-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: #E0E0E0;
+}
+.header-logo-text .pulse {
+  color: #FF007F; /* Magenta for "Pulse" */
+}
+
+.header-title {
+  font-size: 48px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.header-title .discover {
+  color: #FF00FF; /* Magenta */
+}
+
+.header-title .amazing-events {
+  color: #00FFFF; /* Cyan */
+}
+
+.header-subtitle {
+  font-size: 18px;
+  color: #A0A0B0;
+}
+
+/* Search Bar Styles */
+.search-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 40px;
+  gap: 20px;
+}
+
+.search-input-wrapper {
+  flex-grow: 1;
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 20px 15px 50px; /* Padding for icon */
+  background-color: #040032;
+  border: 1px solid #280079;
+  box-shadow: 
+  -10px 0 190px 10px #280079; /* Left shadow (negative X) */
+  border-radius: 10px;
+  color: #c2b6da;
+  font-size: 16px;
+  outline: none;
+}
+.search-input::placeholder {
+  color: #707080;
+}
+
+.search-input-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #707080;
+  font-size: 18px;
+}
+
+
+.category-dropdown {
+  padding: 15px 20px;
+  background-color: #040032;
+  border: 1px solid #280079;
+  border-radius: 10px;
+  box-shadow: 
+  10px -10px 190px 0 #280079, /* Right shadow */
+  -10px -10px 200px 0 #280079; /* Top shadow */
+  color: #e3e2e5;
+  font-size: 16px;
+  min-width: 180px;
+  cursor: pointer;
+  appearance: none; /* Remove default arrow */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%231bcae4' class='bi bi-chevron-down' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  padding-right: 40px; /* Make space for custom arrow */
+}
+
+
+/* Event List Styles */
+.event-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+/* Event Card Styles */
+.event-card {
+  background-color: #050023; /* Darker purple card background */
+  border: 2px solid #000243;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+.event-card-image-container {
+  width: 100%;
+  height: 200px;
+  position: relative;
+}
+
+.event-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-card-tag {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+}
+
+.event-card-tag.tech { background-color: #A020F0; /* Purple */ }
+.event-card-tag.music { background-color: #FF007F; /* Magenta */ }
+.event-card-tag.business { background-color: #00AEEF; /* Light Blue */ }
+
+.event-card-content {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 10px;
+}
+
+.event-card-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #B0B0C0;
+  margin-bottom: 6px;
+}
+
+.event-card-info .icon {
+  font-size: 16px;
+  color: #808090;
+}
+
+.event-card-description {
+  font-size: 14px;
+  color: #A0A0B0;
+  line-height: 1.6;
+  margin-top: 15px;
+  flex-grow: 1; /* Pushes price/button to bottom */
+  margin-bottom: 20px;
+}
+
+.event-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto; /* Pushes to bottom if description is short */
+}
+
+.event-card-price {
+  font-size: 20px;
+  font-weight: 700;
+}
+.event-card-price.tech { color: #A020F0; }
+.event-card-price.music { color: #FF007F; }
+.event-card-price.business { color: #00AEEF; }
+
+.event-card-button {
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: 2px solid transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f8fdfd;
+  cursor: pointer;
+  transition: opacity 0.3s ease, box-shadow 0.3s ease;
+}
+.event-card-button:hover {
+  opacity: 0.85;
+}
+
+.event-card-button.tech { 
+  background-color: #ce0645; 
+  border-color: #ec053d;
+  box-shadow: inset 0px 0px 6px 3px rgba(235, 3, 62, 0.5), 0px 0px 3px 5px rgba(235, 3, 62, 0.2); /* Tech shadow */
+}
+.event-card-button.music { 
+  background-color: #021695; 
+  border-color: #0078df;
+  box-shadow: inset 0px 0px 6px 3px rgba(0, 120, 223, 0.5), 0px 0px 3px 5px rgba(0, 120, 223, 0.2); /* Music shadow */
+}
+.event-card-button.business { 
+  background-color: #003842; 
+  border-color: #00eef0;
+  box-shadow: inset 0px 0px 6px 3px rgba(0, 108, 127,0.5), 0px 0px 3px 5px rgba(0, 108, 122,0.2); /* Business shadow */
+}
+
+/* Icons used in cards (simple unicode) */
+.icon-calendar::before { content: '📅'; margin-right: 4px; }
+.icon-location::before { content: '📍'; margin-right: 4px; }
+
+/* Search icon (simple unicode) */
+.icon-search::before { content: '🔍'; }
+
+
+
